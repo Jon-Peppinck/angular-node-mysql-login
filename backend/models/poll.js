@@ -1,3 +1,5 @@
+const db = require('../util/database');
+
 module.exports = class Poll {
   constructor(id, imgId, question, answer1, answer2, answer3) {
     this.id = id;
@@ -9,6 +11,6 @@ module.exports = class Poll {
   }
 
   static fetchAll() {
-    return { id: 1 };
+    return db.execute('SELECT * FROM polls');
   }
 };
