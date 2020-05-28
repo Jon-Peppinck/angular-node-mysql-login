@@ -1,0 +1,12 @@
+<mat-card *ngFor="let poll of polls$ | async">
+  <div style="font-size: 24px; font-weight: bold; margin-bottom: 1em;">
+    {{ poll.question }}
+  </div>
+  <button style="margin-right: 10px;" mat-flat-button color="primary">
+    {{ poll.answer1 }}
+  </button>
+  <button style="margin-right: 10px;" mat-flat-button color="primary">
+    {{ poll.answer2 }}
+  </button>
+  <button mat-flat-button color="primary">{{ poll.answer3 }}</button>
+</mat-card>
