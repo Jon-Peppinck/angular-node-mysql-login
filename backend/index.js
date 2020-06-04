@@ -6,7 +6,7 @@ const pollRoutes = require('./routes/poll');
 
 const app = express();
 
-const ports = process.env.PORT || 3000;
+const ports = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 

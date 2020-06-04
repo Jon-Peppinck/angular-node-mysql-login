@@ -1,8 +1,7 @@
 const db = require('../util/database');
 
 module.exports = class Poll {
-  constructor(id, imgId, question, answer1, answer2, answer3) {
-    this.id = id;
+  constructor(imgId, question, answer1, answer2, answer3) {
     this.imgId = imgId;
     this.question = question;
     this.answer1 = answer1;
@@ -12,5 +11,12 @@ module.exports = class Poll {
 
   static fetchAll() {
     return db.execute('SELECT * FROM polls');
+  }
+
+  static createPoll(imgId, question, answer1, answer2, answer3) {
+    return db.execute(
+      'INSERT INTO polls (imgId, question, answer1, answer2, answer3) VALUES (?, ?, ?, ?, ?)',
+      [imgId, question, answer1, answer2, answer3]
+    );
   }
 };

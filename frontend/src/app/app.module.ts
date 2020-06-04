@@ -1,10 +1,10 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-
-import { HttpClientModule } from "@angular/common/http";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -33,6 +33,7 @@ import { CreatePollsComponent } from "./components/create-polls/create-polls.com
     MatInputModule,
     MatListModule,
     MatToolbarModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

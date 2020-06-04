@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from "@angular/forms";
 
 @Component({
-  selector: 'app-create-polls',
-  templateUrl: './create-polls.component.html',
-  styleUrls: ['./create-polls.component.scss']
+  selector: "app-create-polls",
+  templateUrl: "./create-polls.component.html",
+  styleUrls: ["./create-polls.component.scss"],
 })
-export class CreatePollsComponent implements OnInit {
+export class CreatePollsComponent {
+  form: FormGroup;
 
-  constructor() { }
+  // questionFormControl = new FormControl("", [Validators.required]);
+  answer1FormControl = new FormControl("", [Validators.required]);
+  answer2FormControl = new FormControl("", [Validators.required]);
+  answer3FormControl = new FormControl("", [Validators.required]);
 
-  ngOnInit(): void {
+  isOpen = false;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      question: "",
+      answer1: "",
+      answer2: "",
+      answer3: "",
+    });
   }
 
+  onSubmit(formData) {
+    console.log(22, formData);
+    this.form.reset();
+  }
 }
