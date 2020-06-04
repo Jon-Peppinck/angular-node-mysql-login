@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 
 const bodyParser = require('body-parser');
@@ -9,6 +11,8 @@ const app = express();
 const ports = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

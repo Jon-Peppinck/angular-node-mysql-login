@@ -13,6 +13,10 @@ module.exports = class Poll {
     return db.execute('SELECT * FROM polls');
   }
 
+  static fetchPoll(id) {
+    return db.execute('SELECT id FROM polls WHERE id = ?', [id]);
+  }
+
   static createPoll(imgId, question, answer1, answer2, answer3) {
     return db.execute(
       'INSERT INTO polls (imgId, question, answer1, answer2, answer3) VALUES (?, ?, ?, ?, ?)',

@@ -6,6 +6,11 @@ exports.getAllPolls = async (req, res, next) => {
   // TODO: catch errors
 };
 
+exports.getPoll = async (req, res, next) => {
+  const [poll] = await Poll.fetchPoll(req.params.id);
+  res.status(200).json(poll);
+};
+
 exports.createPoll = async (req, res) => {
   const createPoll = await Poll.createPoll(
     req.body.imgId,
