@@ -4,7 +4,10 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 
+const authRoutes = require('./routes/auth');
 const pollRoutes = require('./routes/poll');
+
+const errorController = require('./controllers/error');
 
 const app = express();
 
@@ -21,6 +24,12 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/auth', authRoutes);
+
 app.use('/poll', pollRoutes);
+
+app.use(errorController.get404);
+
+app.use(errorController.get500);
 
 app.listen(ports, () => console.log(`listening on port ${ports}`));
