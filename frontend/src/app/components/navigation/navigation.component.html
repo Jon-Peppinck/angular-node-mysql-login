@@ -1,10 +1,17 @@
 <mat-toolbar
   color="primary"
-  style="display: flex; justify-content: space-between;"
+  style="display: flex; justify-content: space-between; padding: 0 64px;"
 >
   <span>Polls</span>
   <span>
-    <span style="margin-right: 10px;">Polls</span>
-    <span>Login</span>
+    <a style="text-decoration: none; color: white;" routerLink="/polls"
+      ><span>Polls</span></a
+    >
+    <a style="text-decoration: none; color: white;" routerLink="/login"
+      ><span style="margin-left: 24px;">Login</span></a
+    >
+    <a style="text-decoration: none; color: white;" routerLink="/signup"
+      ><span style="margin-left: 24px;">Signup</span></a
+    >
   </span>
 </mat-toolbar>

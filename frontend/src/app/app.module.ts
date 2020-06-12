@@ -12,9 +12,14 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
+
+import { AppRoutingModule } from "./app-routing.module";
+
 import { NavigationComponent } from "./components/navigation/navigation.component";
 import { PollsComponent } from "./components/polls/polls.component";
 import { CreatePollsComponent } from "./components/create-polls/create-polls.component";
+import { SignupComponent } from "./components/signup/signup.component";
+import { LoginComponent } from "./components/login/login.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +27,8 @@ import { CreatePollsComponent } from "./components/create-polls/create-polls.com
     NavigationComponent,
     PollsComponent,
     CreatePollsComponent,
+    SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +41,7 @@ import { CreatePollsComponent } from "./components/create-polls/create-polls.com
     MatListModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
