@@ -16,8 +16,8 @@ router.post(
       .isEmail()
       .withMessage('Please enter a valid email.')
       .custom(async (email) => {
-        const userEmail = await User.find(email);
-        if (userEmail[0].length > 0) {
+        const user = await User.find(email);
+        if (user[0].length > 0) {
           return Promise.reject('Email address already exists!');
         }
       })
@@ -26,5 +26,7 @@ router.post(
   ],
   authController.signup
 );
+
+router.post('/login', authController.login);
 
 module.exports = router;

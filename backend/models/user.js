@@ -8,7 +8,7 @@ module.exports = class User {
   }
 
   static find(email) {
-    return db.execute('SELECT email FROM users WHERE email = ?', [email]);
+    return db.execute('SELECT * FROM users WHERE email = ?', [email]);
   }
 
   static save(user) {
