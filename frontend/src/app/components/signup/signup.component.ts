@@ -11,7 +11,7 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
   styleUrls: ["./signup.component.scss"],
 })
 export class SignupComponent implements OnInit {
-  loginForm: FormGroup;
+  signupForm: FormGroup;
 
   private signupUrl = "http://localhost:3001/auth/signup";
 
@@ -19,16 +19,10 @@ export class SignupComponent implements OnInit {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };
 
-  user = {
-    name: "hp5",
-    email: "hp5@test.com",
-    password: "password",
-  };
-
   constructor(private authService: AuthService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.loginForm = this.createFormGroup();
+    this.signupForm = this.createFormGroup();
   }
 
   createFormGroup() {
@@ -44,7 +38,7 @@ export class SignupComponent implements OnInit {
 
   signup() {
     this.authService
-      .signup(this.loginForm.value)
+      .signup(this.signupForm.value)
       .pipe(first())
       .subscribe((msg) => console.log(msg));
   }

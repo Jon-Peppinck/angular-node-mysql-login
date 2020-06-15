@@ -9,7 +9,7 @@ import { Poll } from "../models/Poll";
   providedIn: "root",
 })
 export class PollService {
-  private url = "http://localhost:3000/poll";
+  private url = "http://localhost:3001/poll";
 
   constructor(private http: HttpClient) {}
 

@@ -11,6 +11,7 @@ import { User } from "../models/User";
 })
 export class AuthService {
   private signupUrl = "http://localhost:3001/auth/signup";
+  private loginUrl = "http://localhost:3001/auth/login";
 
   httpOptions: { headers: HttpHeaders } = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -22,5 +23,9 @@ export class AuthService {
     console.log(user);
     return this.http.post<User>(this.signupUrl, user, this.httpOptions);
     // .pipe(catchError(error => of(`Error: ${error}`);
+  }
+
+  public login(email: string, password: string) {
+    return this.http.post(this.loginUrl, { email, password }, this.httpOptions);
   }
 }

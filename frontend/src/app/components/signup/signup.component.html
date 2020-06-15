@@ -1,4 +1,4 @@
-<form (ngSubmit)="signup()" [formGroup]="loginForm" novalidate>
+<form (ngSubmit)="signup()" [formGroup]="signupForm" novalidate>
   <mat-form-field>
     <mat-label>First name</mat-label>
     <input matInput placeholder="Ex. Jon" formControlName="name" />
@@ -19,7 +19,7 @@
   <button
     style="float: right; width: 200px;"
     color="accent"
-    [disabled]="!loginForm.valid"
+    [disabled]="!signupForm.valid"
     mat-raised-button
     type="submit"
   >
