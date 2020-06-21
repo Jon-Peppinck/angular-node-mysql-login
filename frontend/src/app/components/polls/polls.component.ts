@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 
 import { PollService } from "src/app/services/poll.service";
 import { Poll } from "src/app/models/Poll";
-import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-polls",

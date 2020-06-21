@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { catchError, first, tap, map } from "rxjs/operators";
 
 import { User } from "../models/User";
 
@@ -12,6 +12,9 @@ import { User } from "../models/User";
 export class AuthService {
   private signupUrl = "http://localhost:3001/auth/signup";
   private loginUrl = "http://localhost:3001/auth/login";
+  private userUrl = "http://localhost:3001/auth/user";
+
+  // currentUser$: Observable<any>;
 
   httpOptions: { headers: HttpHeaders } = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -25,7 +28,23 @@ export class AuthService {
     // .pipe(catchError(error => of(`Error: ${error}`);
   }
 
-  public login(email: string, password: string) {
+  login(email: string, password: string) {
     return this.http.post(this.loginUrl, { email, password }, this.httpOptions);
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    const token = localStorage.getItem("token");
+    const authHeaders = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+    return this.http.get(this.userUrl, authHeaders).pipe(
+      first(),
+      map((userDetails: any) => {
+        return userDetails.isLoggedIn;
+      })
+    );
   }
 }

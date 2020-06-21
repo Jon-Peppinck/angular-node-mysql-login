@@ -78,3 +78,18 @@ exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.user = async (req, res, next) => {
+  try {
+    if (req.userId) {
+      res
+        .status(200)
+        .json({ isLoggedIn: true, userId: req.userId, email: req.email });
+    }
+  } catch (err) {
+    if (!err.statusCode) {
+      err.statusCode = 500;
+    }
+    next(err);
+  }
+};

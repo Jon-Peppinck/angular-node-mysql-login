@@ -2,9 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 
-import { tap } from "rxjs/operators";
+import { tap, first, catchError } from "rxjs/operators";
 
 import { AuthService } from "src/app/services/auth.service";
+
+import { User } from "src/app/models/User";
 
 @Component({
   selector: "app-login",
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
   login() {
     // TODO: consider unsubscribing
     this.authService
-      .login("test2@test.com", "password")
+      .login(this.loginForm.value.email, this.loginForm.value.password)
       .pipe(
         tap((tokenObject: any) => {
           localStorage.setItem("token", tokenObject.token);
@@ -47,4 +49,8 @@ export class LoginComponent implements OnInit {
       )
       .subscribe();
   }
+
+  // logout() {
+  //   localStorage.removeItem("token");
+  // }
 }

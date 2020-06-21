@@ -22,6 +22,7 @@ import { SignupComponent } from "./components/signup/signup.component";
 import { LoginComponent } from "./components/login/login.component";
 
 import { AuthInterceptorService } from "./services/auth-interceptor.service";
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AuthInterceptorService } from "./services/auth-interceptor.service";
     CreatePollsComponent,
     SignupComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
