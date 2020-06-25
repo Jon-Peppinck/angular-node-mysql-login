@@ -22,3 +22,8 @@ exports.createPoll = async (req, res) => {
   );
   res.status(201).json(createPoll);
 };
+
+exports.deletePoll = async (req, res, next) => {
+  const deleteResponse = await Poll.deletePoll(req.params.id);
+  res.status(200).json(deleteResponse);
+};

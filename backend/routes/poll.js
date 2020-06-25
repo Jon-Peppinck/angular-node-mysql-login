@@ -12,4 +12,6 @@ router.get('/', auth, pollController.getAllPolls);
 
 router.post('/', auth, pollController.createPoll);
 
+router.delete('/:id', auth, pollController.deletePoll);
+
 module.exports = router;

@@ -24,4 +24,8 @@ module.exports = class Poll {
       [imgId, question, answer1, answer2, answer3, userId]
     );
   }
+
+  static deletePoll(id) {
+    return db.execute('DELETE FROM polls WHERE id = ?', [id]);
+  }
 };

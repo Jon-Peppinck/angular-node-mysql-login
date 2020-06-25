@@ -11,7 +11,6 @@ import { User } from "../models/User";
 })
 export class PollService {
   private url = "http://localhost:3001/poll";
-  private createPostUrl = "http://localhost:3001/poll";
 
   httpOptions: { headers: HttpHeaders } = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -25,7 +24,7 @@ export class PollService {
 
   createPost(formData: Partial<Poll>, userId: Pick<User, "id">) {
     return this.http.post(
-      this.createPostUrl,
+      this.url,
       {
         imgId: 1,
         question: formData.question,
@@ -36,5 +35,9 @@ export class PollService {
       },
       this.httpOptions
     );
+  }
+
+  deletePost(pollId: Pick<Poll, "id">) {
+    return this.http.delete<Poll>(`${this.url}/${pollId}`, this.httpOptions);
   }
 }

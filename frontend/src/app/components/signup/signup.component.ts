@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 import { AuthService } from "src/app/services/auth.service";
-import { first } from "rxjs/operators";
+import { first, tap } from "rxjs/operators";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-signup",
@@ -19,7 +20,11 @@ export class SignupComponent implements OnInit {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };
 
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signupForm = this.createFormGroup();
@@ -39,7 +44,10 @@ export class SignupComponent implements OnInit {
   signup() {
     this.authService
       .signup(this.signupForm.value)
-      .pipe(first())
+      .pipe(
+        first(),
+        tap(() => this.router.navigate(["login"]))
+      )
       .subscribe((msg) => console.log(msg));
   }
 }

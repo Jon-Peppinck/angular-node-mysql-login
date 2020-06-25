@@ -1,5 +1,11 @@
 <app-create-polls (create)="createPost()"></app-create-polls>
+
 <mat-card *ngFor="let poll of polls$ | async" style="margin-bottom: 1em;">
+  <button style="float: right;" *ngIf="poll.userId === userId" mat-icon-button>
+    <mat-icon (click)="delete(poll.id)" color="warn">
+      delete
+    </mat-icon>
+  </button>
   <div style="font-size: 24px; font-weight: bold; margin-bottom: 1em;">
     {{ poll.question }}
   </div>

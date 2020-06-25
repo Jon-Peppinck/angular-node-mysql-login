@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
 
 import { User } from "../models/User";
+import { Poll } from "../models/Poll";
 
 @Injectable({
   providedIn: "root",

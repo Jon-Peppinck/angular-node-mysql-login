@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
 
 import { AuthService } from "src/app/services/auth.service";
 import { PollService } from "src/app/services/poll.service";
-import { first, tap } from "rxjs/operators";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-create-polls",
