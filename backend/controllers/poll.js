@@ -17,7 +17,8 @@ exports.createPoll = async (req, res) => {
     req.body.question,
     req.body.answer1,
     req.body.answer2,
-    req.body.answer3
+    req.body.answer3,
+    req.body.userId
   );
   res.status(201).json(createPoll);
 };

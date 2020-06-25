@@ -14,6 +14,7 @@ export class AuthService {
   // private userUrl = "http://localhost:3001/auth/user";
 
   isUserLoggedIn$ = new BehaviorSubject<boolean>(false);
+  userId: Pick<User, "id">;
 
   httpOptions: { headers: HttpHeaders } = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),

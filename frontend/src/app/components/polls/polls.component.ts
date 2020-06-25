@@ -22,4 +22,8 @@ export class PollsComponent implements OnInit {
   fetchAll(): Observable<Poll[]> {
     return this.pollService.fetchAll();
   }
+
+  createPost(): void {
+    this.polls$ = this.fetchAll();
+  }
 }

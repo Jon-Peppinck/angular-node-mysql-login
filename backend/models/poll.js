@@ -1,12 +1,13 @@
 const db = require('../util/database');
 
 module.exports = class Poll {
-  constructor(imgId, question, answer1, answer2, answer3) {
+  constructor(imgId, question, answer1, answer2, answer3, userId) {
     this.imgId = imgId;
     this.question = question;
     this.answer1 = answer1;
     this.answer2 = answer2;
     this.answer3 = answer3;
+    this.userId = userId;
   }
 
   static fetchAll() {
@@ -17,10 +18,10 @@ module.exports = class Poll {
     return db.execute('SELECT id FROM polls WHERE id = ?', [id]);
   }
 
-  static createPoll(imgId, question, answer1, answer2, answer3) {
+  static createPoll(imgId, question, answer1, answer2, answer3, userId) {
     return db.execute(
-      'INSERT INTO polls (imgId, question, answer1, answer2, answer3) VALUES (?, ?, ?, ?, ?)',
-      [imgId, question, answer1, answer2, answer3]
+      'INSERT INTO polls (imgId, question, answer1, answer2, answer3, userId) VALUES (?, ?, ?, ?, ?, ?)',
+      [imgId, question, answer1, answer2, answer3, userId]
     );
   }
 };
