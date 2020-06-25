@@ -15,6 +15,5 @@ export class PollService {
 
   fetchAll(): Observable<Poll[]> {
     return this.http.get<Poll[]>(this.url, { responseType: "json" });
-    // TODO: catch errors
   }
 }

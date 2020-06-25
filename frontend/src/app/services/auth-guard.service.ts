@@ -3,9 +3,10 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
+  Router,
 } from "@angular/router";
 
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./auth.service";
 
@@ -13,17 +14,19 @@ import { AuthService } from "./auth.service";
   providedIn: "root",
 })
 export class AuthGuard implements CanActivate {
-  isSignedIn = false;
-
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    this.authService.isLoggedIn().subscribe((isLoggedIn) => {
-      this.isSignedIn = isLoggedIn;
-    });
-    return of(this.isSignedIn);
+    if (!this.authService.isUserLoggedIn$.value) {
+      this.router.navigate(["signup"]);
+    }
+    return this.authService.isUserLoggedIn$;
   }
 }

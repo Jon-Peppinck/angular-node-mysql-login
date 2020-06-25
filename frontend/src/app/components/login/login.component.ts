@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { HttpHeaders } from "@angular/common/http";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 import { tap, first } from "rxjs/operators";
 
 import { AuthService } from "src/app/services/auth.service";
+import { User } from "src/app/models/User";
 
 @Component({
   selector: "app-login",
@@ -18,13 +20,13 @@ export class LoginComponent implements OnInit {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = this.createFormGroup();
   }
 
-  createFormGroup() {
+  createFormGroup(): FormGroup {
     return new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [
@@ -34,14 +36,16 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  login(): void {
     this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .pipe(
         first(),
-        tap((tokenObject: any) => {
+        tap((tokenObject: { token: string; userId: Pick<User, "id"> }) => {
+          console.log(22, tokenObject);
           localStorage.setItem("token", tokenObject.token);
           this.authService.isUserLoggedIn$.next(true);
+          this.router.navigate(["polls"]);
         })
       )
       .subscribe();
