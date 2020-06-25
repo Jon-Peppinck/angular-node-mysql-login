@@ -15,12 +15,22 @@
       ><span>Polls</span></a
     >
     <a
+      *ngIf="!isAuthenticated"
       routerLinkActive="active-link"
       style="text-decoration: none;"
       routerLink="/login"
       ><span style="margin-left: 24px;">Login</span></a
     >
     <a
+      *ngIf="isAuthenticated"
+      (click)="logout()"
+      routerLinkActive="active-link"
+      style="text-decoration: none;"
+      routerLink="/login"
+      ><span style="margin-left: 24px;">Logout</span></a
+    >
+    <a
+      *ngIf="!isAuthenticated"
       routerLinkActive="active-link"
       style="text-decoration: none;"
       routerLink="/signup"

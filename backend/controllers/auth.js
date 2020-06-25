@@ -81,10 +81,12 @@ exports.login = async (req, res, next) => {
 
 exports.user = async (req, res, next) => {
   try {
-    if (req.userId) {
-      res
-        .status(200)
-        .json({ isLoggedIn: true, userId: req.userId, email: req.email });
+    if (req.isLoggedIn) {
+      res.status(200).json({
+        isLoggedIn: req.isLoggedIn,
+        userId: req.userId,
+        email: req.email,
+      });
     }
   } catch (err) {
     if (!err.statusCode) {
