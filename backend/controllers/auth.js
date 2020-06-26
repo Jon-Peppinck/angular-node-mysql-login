@@ -9,13 +9,6 @@ exports.signup = async (req, res, next) => {
 
   if (!errors.isEmpty()) return;
 
-  // if (!errors.isEmpty()) {
-  //   const error = new Error('Validation failed.');
-  //   error.statusCode = 422;
-  //   error.data = errors.array();
-  //   // throw error;
-  // }
-
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;

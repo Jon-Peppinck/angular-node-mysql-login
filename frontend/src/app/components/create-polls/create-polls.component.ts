@@ -42,7 +42,7 @@ export class CreatePollsComponent {
     });
   }
 
-  onSubmit = (formData) => {
+  onSubmit(formData): void {
     this.pollService
       .createPost(formData, this.authService.userId)
       .pipe(first())
@@ -51,5 +51,5 @@ export class CreatePollsComponent {
       });
     this.form.reset();
     this.formDirective.resetForm();
-  };
+  }
 }

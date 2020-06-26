@@ -12,7 +12,6 @@ import { HomeComponent } from "./components/home/home.component";
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "polls", component: PollsComponent, canActivate: [AuthGuard] },
-  // { path: 'poll/:id', component:  },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "**", redirectTo: "" },

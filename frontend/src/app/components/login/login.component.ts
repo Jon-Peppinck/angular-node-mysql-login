@@ -39,16 +39,6 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
-      .pipe(
-        first(),
-        tap((tokenObject: { token: string; userId: Pick<User, "id"> }) => {
-          console.log(22, tokenObject, tokenObject.userId);
-          this.authService.userId = tokenObject.userId;
-          localStorage.setItem("token", tokenObject.token);
-          this.authService.isUserLoggedIn$.next(true);
-          this.router.navigate(["polls"]);
-        })
-      )
       .subscribe();
   }
 }
